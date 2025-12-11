@@ -57,16 +57,25 @@ plt.show()
 
 ## Matplotlib Markers
 
-Use `marker=`:
+
+You can use the keyword argument `marker` to emphasize each point with a specified marker:
 
 ``` python
+# Eg. Mark each point with a circle
+
 plt.plot(xpoints, ypoints, marker="o")
+plt.show()
+
+# Eg. mark each point with a star (*)
+
 plt.plot(xpoints, ypoints, marker="*")
+plt.show()
 ```
 
 ### Format Strings (fmt)
 
-Syntax:
+You can also use the shortcut string notation parameter to specify the marker.
+This parameter is also called fmt, and is written with this syntax:
 
     marker | line | color
 
@@ -91,6 +100,8 @@ plt.plot(xpoints, ypoints, "o:r")
 ```
 
 ### Marker Size
+
+You can use the keyword argument `markersize` or the shorter version, ms to set the size of the markers:
 
 ``` python
 plt.plot(xpoints, ypoints, marker="o", ms=20)
@@ -168,9 +179,37 @@ plt.title("Title", loc="left")
 
 ## Matplotlib Subplots
 
+### Display Multiple Plots
+
+With the `subplot()` function you can draw multiple plots in one figure:
+
+### The `subplot()` Function
+
+The subplot() function takes three arguments that describes the layout of the figure.
+
+The layout is organized in rows and columns, which are represented by the first and second argument.
+
+The third argument represents the index of the current plot.
+
+
 ``` python
-plt.subplot(1, 2, 1)
-plt.subplot(1, 2, 2)
+# Draw two plots
+
+#plot 1:
+x = np.array([0, 1, 2, 3])
+y = np.array([3, 8, 1, 10])
+
+plt.subplot(1, 2, 1) #(figure has 1 row, 2 column, and this plot is the first plot)
+plt.plot(x,y)
+
+#plot 2:
+x = np.array([0, 1, 2, 3])
+y = np.array([10, 20, 30, 40])
+
+plt.subplot(1, 2, 2) #(figure has 1 row, 2 columns, and this plot is the 2nd one)
+plt.plot(x,y)
+
+plt.show()
 ```
 
 ### Title & Supertitle
@@ -183,7 +222,19 @@ plt.suptitle("MY SHOP")
 
 ## Matplotlib Scatter
 
+### Creating Scatter Plots
+With Pyplot, you can use the `scatter()` function to draw a scatter plot.
+
+The scatter() function plots one dot for each observation. It needs two arrays of the same length, one for the values of the x-axis, and one for the values on the y-axis:
+
+
 ``` python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.array([4, 6, 7, 4, 7, 11, 12, 13, 12, 15, 19, 15, 3, 14, 17])
+y = np.array([99, 93, 97, 99, 105, 110,113, 112, 110, 107, 111, 92, 113, 115, 117])
+
 plt.scatter(x, y)
 plt.show()
 ```
@@ -191,19 +242,50 @@ plt.show()
 ------------------------------------------------------------------------
 
 ## Matplotlib Bars
+### Creating Bars
+With Pyplot, you can use the bar() function to draw bar graphs:
+
+### Horizontal Bars
+If you want the bars to be displayed horizontally instead of vertically, use the barh() function:
+
+### Bar Width
+The bar() takes the keyword argument width to set the width of the bars:
+
+### Bar Height
+The barh() takes the keyword argument height to set the height of the bars:
+
+
 
 ``` python
-plt.bar(x, y, color="r")
-plt.barh(x, y)
+x = np.array(["Munich", "Kathmandu", "NewYork", "London"])
+y = np.array([10, 25, 21, 12])
+
+plt.xlabel("Cities around the globe")
+plt.ylabel("Average temperature of a year(Celsus)")
+plt.title("Comarision of the average tem between cities")
+
+plt.bar(x, y, color = "r")
+
+plt.show()
 ```
 
 ------------------------------------------------------------------------
 
 ## Matplotlib Histogram
 
+### Histogram
+
+A histogram is a graph showing frequency distributions.
+
+In Matplotlib, we use the hist() function to create histograms.
+
+The hist() function will use an array of numbers to create a histogram, the array is sent into the function as an argument.
+
+
 ``` python
 data = np.random.normal(150, 10, 1000)
 plt.hist(data, bins=16, color="lightblue", edgecolor="black")
+plt.show()
 ```
 
 ------------------------------------------------------------------------
@@ -211,7 +293,23 @@ plt.hist(data, bins=16, color="lightblue", edgecolor="black")
 ## Matplotlib Pie Chart
 
 ``` python
-plt.pie(y, labels=mylabels)
-plt.legend(title="Grades")
+y = np.array([35, 25, 25, 15])
+mylabels = ["Grade 1", "Grade 2", "Grade 3", "Grade 4"]
+
+plt.pie(y, labels = mylabels)
+plt.title("Number of students in different grades")
+
 plt.show()
+
+# Legend with header
+
+y = np.array([35, 25, 25, 15])
+mylabels = ["Grade 1", "Grade 2", "Grade 3", "Grade 4"]
+
+plt.pie(y, labels = mylabels)
+plt.title("Number of students in different grades")
+plt.legend(title = "Grades")
+
+plt.show()
+
 ```
